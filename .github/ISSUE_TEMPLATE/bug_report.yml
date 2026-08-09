@@ -1,0 +1,67 @@
+name: Bug report
+description: Something does not work the way it should
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please fill in enough for someone else to
+        reproduce it — chat protocols behave differently from channel to
+        channel, so the exact source string matters.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you see, and what did you expect instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      description: The exact command you ran, and what it took to trigger it.
+      placeholder: |
+        stream-chat twitch:somechannel kick:someother
+        ...after about a minute the left pane stopped updating
+      render: shell
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output of `stream-chat -version`.
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: OS and terminal
+      placeholder: Arch Linux, alacritty 0.15
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Config
+      description: >-
+        Relevant parts of your config.toml, if any. Nothing here should contain
+        secrets, but do check before pasting.
+      render: toml
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: >-
+        Logs, screenshots, or a note about which platform it involves. Please do
+        not include your YouTube API key.
+    validations:
+      required: false

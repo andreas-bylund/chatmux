@@ -39,7 +39,20 @@ func (r *rate) add(t time.Time) {
 	if sec < r.last {
 		sec = r.last
 	}
-	r.buckets[sec%60]++
+	r.buckets[bucket(sec)]++
+}
+
+// bucket maps a unix second onto the ring. Go's % keeps the sign of the
+// dividend, so a timestamp before 1970 would index the array negatively and
+// panic — and timestamps arrive from the network. Twitch's tmi-sent-ts is
+// whatever the tag says, and a bogus value should misreport the message rate,
+// not take the process down.
+func bucket(sec int64) int64 {
+	b := sec % 60
+	if b < 0 {
+		b += 60
+	}
+	return b
 }
 
 // perMinute is the number of messages seen in the last 60 seconds.

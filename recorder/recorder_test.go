@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/andreas-bylund/Stream-chat-terminal/chat"
+	"github.com/andreas-bylund/chatmux/chat"
 )
 
 func at(day, hour int) time.Time {

@@ -175,7 +175,7 @@ func TestWriteTemplateRefusesToClobber(t *testing.T) {
 
 func TestPathHonoursXDG(t *testing.T) {
 	t.Setenv("XDG_CONFIG_HOME", "/tmp/xdg-test")
-	if want := "/tmp/xdg-test/stream-chat/config.toml"; Path() != want {
+	if want := "/tmp/xdg-test/chatmux/config.toml"; Path() != want {
 		t.Errorf("Path() = %q, want %q", Path(), want)
 	}
 }

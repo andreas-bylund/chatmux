@@ -92,7 +92,7 @@ func Default() Config {
 		},
 		Log: Log{
 			Enabled: false,
-			Dir:     filepath.Join(dataHome(), "stream-chat"),
+			Dir:     filepath.Join(dataHome(), "chatmux"),
 			Format:  "text",
 		},
 		Filter: Filter{
@@ -110,7 +110,7 @@ func Default() Config {
 
 // Path is where the config file lives, honouring XDG_CONFIG_HOME.
 func Path() string {
-	return filepath.Join(configHome(), "stream-chat", "config.toml")
+	return filepath.Join(configHome(), "chatmux", "config.toml")
 }
 
 // Load reads path, falling back to defaults for anything it does not set. A

@@ -7,7 +7,7 @@
 package ui
 
 import (
-	"github.com/andreas-bylund/Stream-chat-terminal/chat"
+	"github.com/andreas-bylund/chatmux/chat"
 	tea "github.com/charmbracelet/bubbletea"
 )
 

@@ -9,8 +9,8 @@ import (
 
 // Template is the commented starter config written by --init-config. It is kept
 // in sync with Default() by TestTemplateMatchesDefaults.
-const Template = `# stream-chat configuration
-# Docs: https://github.com/andreas-bylund/Stream-chat-terminal
+const Template = `# chatmux configuration
+# Docs: https://github.com/andreas-bylund/chatmux
 
 [ui]
 # "split"   — one column per source
@@ -26,7 +26,7 @@ compact = false
 
 [log]
 enabled = false
-dir = "~/.local/share/stream-chat"
+dir = "~/.local/share/chatmux"
 # "text", "jsonl", or "both".
 format = "text"
 # One file per source instead of one combined file.
@@ -60,7 +60,7 @@ reset_after = "2m"
 # Consecutive failures before giving up. 0 = never give up.
 max_attempts = 0
 
-# Named source sets, so you can run "stream-chat evening" instead of typing
+# Named source sets, so you can run "chatmux evening" instead of typing
 # every source out. Names must not contain ":".
 [presets]
 # evening = ["twitch:xqc", "kick:trainwreckstv"]

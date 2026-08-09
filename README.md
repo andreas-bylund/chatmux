@@ -1,13 +1,13 @@
-# stream-chat
+# chatmux
 
-[![CI](https://github.com/andreas-bylund/Stream-chat-terminal/actions/workflows/ci.yml/badge.svg)](https://github.com/andreas-bylund/Stream-chat-terminal/actions/workflows/ci.yml)
-[![Go Reference](https://pkg.go.dev/badge/github.com/andreas-bylund/Stream-chat-terminal.svg)](https://pkg.go.dev/github.com/andreas-bylund/Stream-chat-terminal)
-[![Go Report Card](https://goreportcard.com/badge/github.com/andreas-bylund/Stream-chat-terminal)](https://goreportcard.com/report/github.com/andreas-bylund/Stream-chat-terminal)
+[![CI](https://github.com/andreas-bylund/chatmux/actions/workflows/ci.yml/badge.svg)](https://github.com/andreas-bylund/chatmux/actions/workflows/ci.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/andreas-bylund/chatmux.svg)](https://pkg.go.dev/github.com/andreas-bylund/chatmux)
+[![Go Report Card](https://goreportcard.com/badge/github.com/andreas-bylund/chatmux)](https://goreportcard.com/report/github.com/andreas-bylund/chatmux)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Read live chat from **Twitch**, **YouTube** and **Kick** in your terminal. Follow
-several streams at once, side by side in a full-screen TUI — or as plain lines on
-stdout when you want to pipe it somewhere.
+A multiplexer for live chat. `chatmux` reads **Twitch**, **YouTube** and **Kick**
+into your terminal and puts them in one view — side by side in a full-screen TUI,
+or as plain lines on stdout when you want to pipe it somewhere.
 
 ```
 ┌─ twitch:kaicenat ●───────────────────┬─ kick:iceposeidon ●──────────────────┐
@@ -38,18 +38,15 @@ stdout when you want to pipe it somewhere.
 ### With Go
 
 ```bash
-go install github.com/andreas-bylund/Stream-chat-terminal@latest
+go install github.com/andreas-bylund/chatmux@latest
 ```
-
-The binary is installed as `Stream-chat-terminal`; rename it to `stream-chat` if
-you prefer the shorter name.
 
 ### From source
 
 ```bash
-git clone https://github.com/andreas-bylund/Stream-chat-terminal.git
-cd Stream-chat-terminal
-make build          # produces ./stream-chat
+git clone https://github.com/andreas-bylund/chatmux.git
+cd chatmux
+make build          # produces ./chatmux
 ```
 
 Requires Go 1.25 or newer.
@@ -57,7 +54,7 @@ Requires Go 1.25 or newer.
 ### Pre-built binaries
 
 Grab an archive for your platform from the
-[releases page](https://github.com/andreas-bylund/Stream-chat-terminal/releases).
+[releases page](https://github.com/andreas-bylund/chatmux/releases).
 
 ## Usage
 
@@ -65,11 +62,11 @@ Each argument is either a source in the form `<platform>:<target>`, or the name 
 a preset from the config file.
 
 ```bash
-stream-chat twitch:xqc
-stream-chat kick:trainwreckstv
-stream-chat youtube:dQw4w9WgXcQ
-stream-chat twitch:xqc kick:trainwreckstv youtube:dQw4w9WgXcQ
-stream-chat evening                   # a preset from the config file
+chatmux twitch:xqc
+chatmux kick:trainwreckstv
+chatmux youtube:dQw4w9WgXcQ
+chatmux twitch:xqc kick:trainwreckstv youtube:dQw4w9WgXcQ
+chatmux evening                   # a preset from the config file
 ```
 
 ### Keys
@@ -108,8 +105,8 @@ do not yank the text away from under you. `G` resumes.
 redirected stdout contains chat and nothing else:
 
 ```bash
-stream-chat -plain twitch:xqc | grep -i my-name
-stream-chat -plain twitch:xqc > chat.txt
+chatmux -plain twitch:xqc | grep -i my-name
+chatmux -plain twitch:xqc > chat.txt
 ```
 
 Plain mode turns on automatically when stdout is not a terminal — a TUI cannot be
@@ -118,7 +115,7 @@ drawn there anyway.
 ## Configuration
 
 ```bash
-stream-chat -init-config       # writes ~/.config/stream-chat/config.toml
+chatmux -init-config       # writes ~/.config/chatmux/config.toml
 ```
 
 The generated file is commented. In short:
@@ -132,7 +129,7 @@ compact = false       # true hides the per-line platform tag
 
 [log]
 enabled = false
-dir = "~/.local/share/stream-chat"
+dir = "~/.local/share/chatmux"
 format = "text"       # "text", "jsonl" or "both"
 split_by_source = false
 
@@ -158,8 +155,8 @@ max_attempts = 0      # 0 = never give up
 evening = ["twitch:xqc", "kick:trainwreckstv"]
 ```
 
-The config file lives in `$XDG_CONFIG_HOME/stream-chat/config.toml`, falling back
-to `~/.config/stream-chat/config.toml`. Unknown keys produce an error that points
+The config file lives in `$XDG_CONFIG_HOME/chatmux/config.toml`, falling back
+to `~/.config/chatmux/config.toml`. Unknown keys produce an error that points
 at the typo instead of being silently ignored.
 
 ### Filters and highlights
@@ -177,7 +174,7 @@ between runs. JSONL lines are `chat.Message` verbatim, so they go straight into
 `jq`:
 
 ```bash
-jq -r 'select(.platform=="twitch") | "\(.user): \(.text)"' ~/.local/share/stream-chat/2026-08-09.jsonl
+jq -r 'select(.platform=="twitch") | "\(.user): \(.text)"' ~/.local/share/chatmux/2026-08-09.jsonl
 ```
 
 ## Platforms
@@ -189,7 +186,7 @@ pings every 60 seconds and treats 150 seconds of silence as a dead connection, s
 dropped links are noticed instead of hanging quietly.
 
 ```bash
-stream-chat twitch:<channel>
+chatmux twitch:<channel>
 ```
 
 ### YouTube
@@ -205,8 +202,8 @@ The target can be a video ID or a URL (`watch?v=`, `youtu.be/`, `/live/`,
 `/embed/`):
 
 ```bash
-stream-chat youtube:dQw4w9WgXcQ
-stream-chat "youtube:https://youtu.be/dQw4w9WgXcQ"
+chatmux youtube:dQw4w9WgXcQ
+chatmux "youtube:https://youtu.be/dQw4w9WgXcQ"
 ```
 
 Each poll costs 5 quota units; the default allowance of 10,000/day is roughly 2-3
@@ -219,7 +216,7 @@ the client keeps trying, so you can start it in advance.
 Pusher WebSocket, the same one the web client uses. No auth.
 
 ```bash
-stream-chat kick:<channel-slug>
+chatmux kick:<channel-slug>
 ```
 
 **Unofficial** — Kick publishes no chat API, so the app key and event names are

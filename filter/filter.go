@@ -9,7 +9,7 @@ import (
 	"sync/atomic"
 	"unicode/utf8"
 
-	"github.com/andreas-bylund/Stream-chat-terminal/chat"
+	"github.com/andreas-bylund/chatmux/chat"
 )
 
 // Rules is the compiled-from-config description of what to hide and highlight.

@@ -23,7 +23,7 @@ body:
       label: How to reproduce
       description: The exact command you ran, and what it took to trigger it.
       placeholder: |
-        stream-chat twitch:somechannel kick:someother
+        chatmux twitch:somechannel kick:someother
         ...after about a minute the left pane stopped updating
       render: shell
     validations:
@@ -33,7 +33,7 @@ body:
     id: version
     attributes:
       label: Version
-      description: Output of `stream-chat -version`.
+      description: Output of `chatmux -version`.
     validations:
       required: true
 

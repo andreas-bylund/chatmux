@@ -1,14 +1,14 @@
 version: 2
 
-project_name: stream-chat
+project_name: chatmux
 
 before:
   hooks:
     - go mod tidy
 
 builds:
-  - id: stream-chat
-    binary: stream-chat
+  - id: chatmux
+    binary: chatmux
     env:
       - CGO_ENABLED=0
     goos:
@@ -48,4 +48,4 @@ changelog:
 release:
   draft: true
   footer: |
-    **Full changelog**: https://github.com/andreas-bylund/Stream-chat-terminal/compare/{{ .PreviousTag }}...{{ .Tag }}
+    **Full changelog**: https://github.com/andreas-bylund/chatmux/compare/{{ .PreviousTag }}...{{ .Tag }}

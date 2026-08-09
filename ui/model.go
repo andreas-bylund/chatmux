@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/andreas-bylund/Stream-chat-terminal/chat"
-	"github.com/andreas-bylund/Stream-chat-terminal/filter"
+	"github.com/andreas-bylund/chatmux/chat"
+	"github.com/andreas-bylund/chatmux/filter"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/x/ansi"
 )
@@ -448,7 +448,7 @@ func (m *model) helpView() string {
 	}
 
 	var b strings.Builder
-	b.WriteString(styleFocus.Render("stream-chat") + "\n\n")
+	b.WriteString(styleFocus.Render("chatmux") + "\n\n")
 	for _, r := range rows {
 		fmt.Fprintf(&b, "  %s  %s\n",
 			truncPad(styleKey.Render(r[0]), 18), styleDim.Render(r[1]))

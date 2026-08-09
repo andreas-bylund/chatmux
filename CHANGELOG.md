@@ -32,4 +32,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   earlier output, or emit sequences that some terminals answer on stdin — and it
   was replayed when a saved log was later printed.
 
-[Unreleased]: https://github.com/andreas-bylund/Stream-chat-terminal/commits/main
+[Unreleased]: https://github.com/andreas-bylund/chatmux/commits/main

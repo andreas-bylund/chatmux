@@ -3,7 +3,7 @@ package twitch
 import (
 	"testing"
 
-	"github.com/andreas-bylund/Stream-chat-terminal/chat"
+	"github.com/andreas-bylund/chatmux/chat"
 )
 
 func TestParseIRC(t *testing.T) {

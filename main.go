@@ -1,4 +1,4 @@
-// Command stream-chat streams live chat from Twitch, YouTube and Kick into the
+// Command chatmux streams live chat from Twitch, YouTube and Kick into the
 // terminal, multiplexed into one view.
 package main
 
@@ -16,14 +16,14 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/andreas-bylund/Stream-chat-terminal/chat"
-	"github.com/andreas-bylund/Stream-chat-terminal/config"
-	"github.com/andreas-bylund/Stream-chat-terminal/filter"
-	"github.com/andreas-bylund/Stream-chat-terminal/kick"
-	"github.com/andreas-bylund/Stream-chat-terminal/recorder"
-	"github.com/andreas-bylund/Stream-chat-terminal/twitch"
-	"github.com/andreas-bylund/Stream-chat-terminal/ui"
-	"github.com/andreas-bylund/Stream-chat-terminal/youtube"
+	"github.com/andreas-bylund/chatmux/chat"
+	"github.com/andreas-bylund/chatmux/config"
+	"github.com/andreas-bylund/chatmux/filter"
+	"github.com/andreas-bylund/chatmux/kick"
+	"github.com/andreas-bylund/chatmux/recorder"
+	"github.com/andreas-bylund/chatmux/twitch"
+	"github.com/andreas-bylund/chatmux/ui"
+	"github.com/andreas-bylund/chatmux/youtube"
 	"github.com/mattn/go-isatty"
 )
 
@@ -33,7 +33,7 @@ const shutdownGrace = 3 * time.Second
 
 func main() {
 	if err := run(); err != nil {
-		fmt.Fprintln(os.Stderr, "stream-chat:", err)
+		fmt.Fprintln(os.Stderr, "chatmux:", err)
 		os.Exit(1)
 	}
 }
@@ -170,7 +170,7 @@ func runTUI(ctx context.Context, cfg config.Config, o opts, sources []chat.Sourc
 
 	// The terminal is ours again, so anything worth reporting can be printed.
 	if dropped := prog.Dropped(); dropped > 0 {
-		fmt.Fprintf(os.Stderr, "stream-chat: dropped %d messages the display could not keep up with\n", dropped)
+		fmt.Fprintf(os.Stderr, "chatmux: dropped %d messages the display could not keep up with\n", dropped)
 	}
 	reportRecorder(rec)
 	return err
@@ -252,7 +252,7 @@ func reportRecorder(rec *recorder.Recorder) {
 		return
 	}
 	for _, err := range rec.Errors() {
-		fmt.Fprintln(os.Stderr, "stream-chat: log:", err)
+		fmt.Fprintln(os.Stderr, "chatmux: log:", err)
 	}
 }
 
@@ -356,17 +356,17 @@ var version string
 
 func versionString() string {
 	if version != "" {
-		return "stream-chat " + version
+		return "chatmux " + version
 	}
 	info, ok := debug.ReadBuildInfo()
 	if !ok || info.Main.Version == "" {
-		return "stream-chat (unknown version)"
+		return "chatmux (unknown version)"
 	}
-	return "stream-chat " + info.Main.Version
+	return "chatmux " + info.Main.Version
 }
 
 func usage() {
-	fmt.Fprintf(os.Stderr, `stream-chat — live chat from Twitch, YouTube and Kick in the terminal
+	fmt.Fprintf(os.Stderr, `chatmux — live chat from Twitch, YouTube and Kick in the terminal
 
 usage: %s [flags] <source|preset>...
 

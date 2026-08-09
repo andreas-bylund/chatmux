@@ -6,8 +6,8 @@ import (
 	"io"
 	"sync"
 
-	"github.com/andreas-bylund/Stream-chat-terminal/chat"
-	"github.com/andreas-bylund/Stream-chat-terminal/ui"
+	"github.com/andreas-bylund/chatmux/chat"
+	"github.com/andreas-bylund/chatmux/ui"
 	"github.com/charmbracelet/lipgloss"
 )
 

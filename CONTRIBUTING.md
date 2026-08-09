@@ -5,8 +5,8 @@ Thanks for taking the time. Bug reports, ideas and pull requests are all welcome
 ## Getting started
 
 ```bash
-git clone https://github.com/andreas-bylund/Stream-chat-terminal.git
-cd Stream-chat-terminal
+git clone https://github.com/andreas-bylund/chatmux.git
+cd chatmux
 make build
 make check     # go vet + go test ./...
 ```
@@ -88,7 +88,7 @@ fine and behave badly:
 
 ## Reporting bugs
 
-Open an issue with the version (`stream-chat -version`), your OS and terminal,
+Open an issue with the version (`chatmux -version`), your OS and terminal,
 the exact command you ran, and what happened instead. For anything involving a
 specific channel, include the source string — chat protocols behave differently
 depending on the channel's settings.

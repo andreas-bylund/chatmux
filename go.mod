@@ -1,4 +1,4 @@
-module github.com/andreas-bylund/Stream-chat-terminal
+module github.com/andreas-bylund/chatmux
 
 go 1.25.0
 

@@ -10,7 +10,7 @@ sure you can reproduce the issue on the most recent version before reporting.
 Please do not open a public issue.
 
 Use GitHub's private reporting on the
-[Security tab](https://github.com/andreas-bylund/Stream-chat-terminal/security/advisories/new),
+[Security tab](https://github.com/andreas-bylund/chatmux/security/advisories/new),
 or email **andreas@andreasbylund.se**.
 
 Include what you did, what happened, and what you expected. A proof of concept
@@ -18,7 +18,7 @@ helps but is not required. You can expect an initial reply within a week.
 
 ## Scope
 
-`stream-chat` is a read-only client: it connects out to Twitch, YouTube and Kick,
+`chatmux` is a read-only client: it connects out to Twitch, YouTube and Kick,
 it never authenticates as you on Twitch or Kick, and it never sends messages.
 Things that are in scope anyway:
 

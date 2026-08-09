@@ -1,5 +1,5 @@
 # Build output
-/stream-chat
+/chatmux
 /dist/
 *.exe
 

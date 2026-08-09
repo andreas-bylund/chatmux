@@ -16,7 +16,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/andreas-bylund/Stream-chat-terminal/chat"
+	"github.com/andreas-bylund/chatmux/chat"
 )
 
 const (

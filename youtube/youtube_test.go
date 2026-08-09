@@ -6,7 +6,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/andreas-bylund/Stream-chat-terminal/chat"
+	"github.com/andreas-bylund/chatmux/chat"
 )
 
 func TestExtractVideoID(t *testing.T) {

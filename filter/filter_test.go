@@ -3,7 +3,7 @@ package filter
 import (
 	"testing"
 
-	"github.com/andreas-bylund/Stream-chat-terminal/chat"
+	"github.com/andreas-bylund/chatmux/chat"
 )
 
 func msg(user, text string) chat.Message {

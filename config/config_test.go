@@ -174,8 +174,11 @@ func TestWriteTemplateRefusesToClobber(t *testing.T) {
 }
 
 func TestPathHonoursXDG(t *testing.T) {
-	t.Setenv("XDG_CONFIG_HOME", "/tmp/xdg-test")
-	if want := "/tmp/xdg-test/chatmux/config.toml"; Path() != want {
+	// Built with filepath.Join rather than written out: Path() uses the OS
+	// separator, so a hard-coded "/" expectation only passes off Windows.
+	dir := t.TempDir()
+	t.Setenv("XDG_CONFIG_HOME", dir)
+	if want := filepath.Join(dir, "chatmux", "config.toml"); Path() != want {
 		t.Errorf("Path() = %q, want %q", Path(), want)
 	}
 }

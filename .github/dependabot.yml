@@ -7,6 +7,12 @@ updates:
       interval: monthly
     commit-message:
       prefix: "build"
+    # Indirect dependencies are updated too: charmbracelet/x/ansi is a direct
+    # dependency of ours but x/cellbuf, which is indirect, is written against
+    # its API. Bumping only the direct one leaves the pair incompatible and
+    # nothing in the module graph compiles.
+    allow:
+      - dependency-type: all
     groups:
       go-dependencies:
         patterns: ["*"]

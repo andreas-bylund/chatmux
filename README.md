@@ -9,15 +9,7 @@ A multiplexer for live chat. `chatmux` reads **Twitch**, **YouTube** and **Kick*
 into your terminal and puts them in one view — side by side in a full-screen TUI,
 or as plain lines on stdout when you want to pipe it somewhere.
 
-```
-┌─ twitch:kaicenat ●───────────────────┬─ kick:iceposeidon ●──────────────────┐
-│  T  15:15 TuyoDeMora: make. a. bed.  │  K  15:15 zius: yes o7               │
-│  T  15:15 NamDaVietBoi: L kaii       │  K  15:15 Buffz: content             │
-│  T  15:15 darftarean: The best Duo   │  K  15:15 Thailandbars: KEKW         │
-├──────────────────────────────────────┴──────────────────────────────────────┤
-│ ● twitch:kaicenat  ● kick:iceposeidon              412 msg/min · ? help      │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+![Two chat sources side by side in the terminal](.github/assets/split.png)
 
 ## Features
 
@@ -69,7 +61,20 @@ chatmux twitch:xqc kick:trainwreckstv youtube:dQw4w9WgXcQ
 chatmux evening                   # a preset from the config file
 ```
 
+### Unified view
+
+`u` merges every source into one time-ordered column, which is the readable
+option once you are following more than two or three channels. Each line keeps
+its platform badge, and a source that drops says so in the stream rather than
+just going quiet:
+
+![All sources merged into one column, with one source reconnecting](.github/assets/unified.png)
+
 ### Keys
+
+`?` shows this list without leaving the interface:
+
+![The help overlay](.github/assets/help.png)
 
 | Key | Action |
 | --- | --- |

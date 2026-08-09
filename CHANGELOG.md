@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-08-09
+
+First public release.
+
 ### Added
 
 - Full-screen TUI with one scrollable pane per source, a unified single-column
@@ -24,6 +28,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - YouTube client over Data API v3 with quota-aware polling and backlog skipping.
 - Kick client over the Pusher WebSocket.
 
+### Fixed
+
+- The message-rate counter no longer panics on a chat message timestamped before
+  1970. Twitch's `tmi-sent-ts` is taken from the IRC tag without a range check,
+  so a bogus value indexed the counter's bucket ring negatively and crashed the
+  client instead of misreporting a number in the status bar.
+
 ### Security
 
 - Control characters are stripped from all chat text, nicknames and error
@@ -32,4 +43,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   earlier output, or emit sequences that some terminals answer on stdin — and it
   was replayed when a saved log was later printed.
 
-[Unreleased]: https://github.com/andreas-bylund/chatmux/commits/main
+[Unreleased]: https://github.com/andreas-bylund/chatmux/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/andreas-bylund/chatmux/releases/tag/v0.1.0

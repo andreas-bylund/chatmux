@@ -48,8 +48,10 @@ func (r Retry) withDefaults() Retry {
 	return r
 }
 
-// sourceSink stamps the source label onto everything flowing through it, so
-// individual sources never have to repeat their own name.
+// sourceSink is the trust boundary every source passes through. It stamps the
+// source label onto everything flowing past, so individual sources never have to
+// repeat their own name, and it strips control characters, so a new platform
+// cannot forget to and hand the terminal a message that is really a command.
 type sourceSink struct {
 	label string
 	inner Sink
@@ -57,11 +59,15 @@ type sourceSink struct {
 
 func (s sourceSink) Message(m Message) {
 	m.Source = s.label
+	m.User = sanitize(m.User)
+	m.Text = sanitize(m.Text)
+	m.Channel = sanitize(m.Channel)
 	s.inner.Message(m)
 }
 
 func (s sourceSink) Status(st Status) {
 	st.Source = s.label
+	st.Err = sanitizeErr(st.Err)
 	s.inner.Status(st)
 }
 
